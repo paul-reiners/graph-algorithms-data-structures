@@ -29,3 +29,9 @@ class Test(TestCase):
         g = {1: [2, 3], 2: [4], 3: [4], 4: []}
         result = topo_sort(g)
         self.assertEqual([1, 2, 3, 4], result)
+
+
+    def test_topo_sort_rev(self):
+        g = {1: [2, 3], 2: [4], 3: [4], 4: []}
+        result = topo_sort(g, rev=True)
+        self.assertEqual([4, 3, 2, 1], result)
