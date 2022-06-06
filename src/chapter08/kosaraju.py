@@ -42,7 +42,7 @@ def kosaraju(g):
     global num_scc
     num_scc = 0
     for v in f:
-        if not explored[v]:
+        if not explored[v - 1]:
             num_scc += 1
             # assign scc-values
             scc = dfs_scc(g, v)

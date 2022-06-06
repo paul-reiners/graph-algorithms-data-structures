@@ -5,13 +5,15 @@ from chapter08.kosaraju import kosaraju, topo_sort
 
 class Test(TestCase):
     def test_problem8_test1(self):
-        file1 = open('../../data/chapter08/problem8.10test1.txt', 'r')
+        file1 = open('../data/chapter08/problem8.10test1.txt', 'r')
         Lines = file1.readlines()
 
         g = {}
         for line in Lines:
             line = line.strip()
             v, w = line.split()
+            v = int(v)
+            w = int(w)
             if v not in g:
                 g[v] = []
             g[v].append(w)
