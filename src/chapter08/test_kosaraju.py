@@ -6,10 +6,10 @@ from chapter08.kosaraju import kosaraju, topo_sort
 class Test(TestCase):
     def test_problem8_test1(self):
         file1 = open('../data/chapter08/problem8.10test1.txt', 'r')
-        Lines = file1.readlines()
+        lines = file1.readlines()
 
         g = {}
-        for line in Lines:
+        for line in lines:
             line = line.strip()
             v, w = line.split()
             v = int(v)
@@ -26,14 +26,31 @@ class Test(TestCase):
             self.assertEqual(len(sccs[i]), scc_size)
             i += 1
 
-
     def test_topo_sort(self):
         g = {1: [2, 3], 2: [4], 3: [4], 4: []}
         result = topo_sort(g)
         self.assertEqual([1, 2, 3, 4], result)
 
-
     def test_topo_sort_rev(self):
         g = {1: [2, 3], 2: [4], 3: [4], 4: []}
         result = topo_sort(g, rev=True)
         self.assertEqual([4, 3, 2, 1], result)
+
+
+    def test_rev_sort(self):
+        file1 = open('../data/chapter08/test.txt', 'r')
+        lines = file1.readlines()
+
+        g = {}
+        for line in lines:
+            line = line.strip()
+            v, w = line.split()
+            v = int(v)
+            w = int(w)
+            if v not in g:
+                g[v] = []
+            if w not in g:
+                g[w] = []
+            g[v].append(w)
+        result = topo_sort(g, 11, rev=True)
+        self.assertEqual([1, 3, 11, 5, 7, 9, 2, 10, 8, 6, 4], result)
