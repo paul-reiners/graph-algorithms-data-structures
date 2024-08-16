@@ -1,6 +1,7 @@
 from unittest import TestCase
 
 from chapter08.kosaraju import kosaraju, topo_sort
+from graph_adjacency_list import Graph_Adjacency_List
 
 
 class Test(TestCase):
@@ -8,10 +9,12 @@ class Test(TestCase):
         file1 = open('../../data/chapter08/problem8.10test1.txt', 'r')
         Lines = file1.readlines()
 
-        g = {}
+        g = Graph_Adjacency_List()
         for line in Lines:
             line = line.strip()
             v, w = line.split()
+            v = int(v)
+            w = int(w)
             if v not in g:
                 g[v] = []
             g[v].append(w)
